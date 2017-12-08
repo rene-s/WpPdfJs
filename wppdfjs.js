@@ -1,7 +1,5 @@
 jQuery(function ($) {
-    $('#insert-pdfjs').click(openMediaWindow);
-
-    function openMediaWindow() {
+    $('#insert-pdfjs').click(function () {
         console.log('pdfjs media button clicked');
         var frame = wp.media({
             title: 'Insert a PDF',
@@ -13,9 +11,9 @@ jQuery(function ($) {
         frame.on('select', function () {
             var selectionURL = frame.state().get('selection').first().toJSON().url;
             selectionURL = encodeURIComponent(selectionURL);
-            wp.media.editor.insert('[pdfjs-viewer url="' + selectionURL + '" viewer_width=100% viewer_height=1360px fullscreen=true download=true print=true]');
+            wp.media.editor.insert('[pdf-embed url="' + selectionURL + '" viewer_width=100% viewer_height=1360px fullscreen=true download=true print=true]');
         });
 
         frame.open();
-    }
+    });
 });
